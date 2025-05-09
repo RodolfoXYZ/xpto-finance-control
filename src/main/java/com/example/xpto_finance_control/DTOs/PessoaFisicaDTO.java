@@ -1,4 +1,8 @@
 package com.example.xpto_finance_control.DTOs;
 
-public record PessoaFisicaDTO() {
+import java.math.BigDecimal;
+
+import jakarta.validation.constraints.NotNull;
+
+public record PessoaFisicaDTO(@NotNull String nome, @NotNull EnderecoDTO endereco,@NotNull ContaSimplificadaDTO contaInicial,@NotNull BigDecimal movimentacaoInicial,@NotNull String telefone,@NotNull String cpf) {
 }
