@@ -1,12 +1,30 @@
 package com.example.xpto_finance_control.models;
 
-import java.math.BigDecimal;
+import jakarta.persistence.*;
+import lombok.Data;
 
-public class Transaction {
-    private TransactionType transactionType;
-    private Client client;
-    private Account account;
-    private BigDecimal value;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Data
+public class Movimentacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long movimentacaoId;
+    @Enumerated(EnumType.STRING)
+    private TipoMovimentacao tipoMovimentacao;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    @JsonIgnoreProperties("contas")
+    private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "conta_id", nullable = false)
+    @JsonIgnoreProperties({"movimentacoes", "cliente"})
+    private Conta conta;
+    private BigDecimal valor;
     private LocalDate dataMovimentacao;
 
 }

@@ -1,5 +1,5 @@
 package com.example.xpto_finance_control.models;
 
-public enum TransactionType {
+public enum TipoMovimentacao {
     CREDITO, DEBITO
 }
